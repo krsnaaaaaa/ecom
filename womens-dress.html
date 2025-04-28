@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Men's Jacket</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #111;
+    }
+
+    .container {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .main-image img {
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .thumbnails img {
+      width: 70px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .thumbnails img.active,
+    .thumbnails img:hover {
+      border: 2px solid #111;
+    }
+
+    .product-details {
+      margin-top: 2rem;
+    }
+
+    .product-details h1 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .color-btn {
+      width: 32px;
+      height: 32px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: border 0.2s ease;
+    }
+
+    .color-btn.active,
+    .color-btn:hover {
+      border-color: #111;
+    }
+
+    .color-black { background-color: #000; }
+    .color-blue { background-color: #0033cc; }
+    .color-gray { background-color: #666; }
+
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      background-color: #fafafa;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    @media(min-width: 769px) {
+      .container {
+        display: flex;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      .left,
+      .right {
+        flex: 1;
+      }
+
+      .thumbnails {
+        flex-direction: column;
+        margin-top: 0.5rem;
+      }
+
+      .thumbnails img {
+        width: 60px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- LEFT SECTION -->
+    <div class="left">
+      <div class="main-image">
+        <img id="mainImage" src="https://i.pinimg.com/736x/a6/f9/e1/a6f9e1c5fd99c67249a4901f9c4172fc.jpg" alt="Main">
+      </div>
+
+      <div class="thumbnails">
+        <img src="https://i.pinimg.com/736x/ff/77/bb/ff77bb54104159804f94781b5da0e762.jpg" class="active" onclick="changeImage(this)">
+        <img src="https://i.pinimg.com/736x/1f/2e/bb/1f2ebb4c9b3c8aef98a95a44c4bb7e3f.jpg" onclick="changeImage(this)">
+        <img src="https://i.pinimg.com/736x/2f/67/21/2f6721a4f74889d6784e7b83031ae21f.jpg" onclick="changeImage(this)">
+      </div>
+    </div>
+
+    <!-- RIGHT SECTION -->
+    <div class="right product-details">
+      <h1>Men's Slim-Fit Jacket</h1>
+      <div class="price">$49.99</div>
+      <p class="description">Modern slim-fit jacket crafted from premium cotton blend. Features minimalist design, high collar and front zip—perfect for all seasons.</p>
+
+      <div>
+        <label for="size">Size:</label>
+        <select id="size">
+          <option value="s">S</option>
+          <option value="m">M</option>
+          <option value="l">L</option>
+          <option value="xl">XL</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Color:</label>
+        <div class="color-options">
+          <div class="color-btn color-black active" onclick="selectColor(this, 'Black')"></div>
+          <div class="color-btn color-blue" onclick="selectColor(this, 'Blue')"></div>
+          <div class="color-btn color-gray" onclick="selectColor(this, 'Gray')"></div>
+        </div>
+      </div>
+
+      <button onclick="buyNow()">BUY NOW</button>
+    </div>
+  </div>
+
+  <script>
+    function changeImage(el) {
+      document.getElementById('mainImage').src = el.src;
+      document.querySelectorAll('.thumbnails img').forEach(img => img.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function selectColor(element, color) {
+      document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+      console.log("Selected color:", color);
+    }
+
+    function buyNow() {
+      alert("Redirecting to checkout...");
+    }
+  </script>
+
+</body>
+</html>
